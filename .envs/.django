@@ -1,0 +1,25 @@
+# General
+# ------------------------------------------------------------------------------
+# DJANGO_READ_DOT_ENV_FILE=True
+DJANGO_SETTINGS_MODULE=compose_example.settings
+DJANGO_SECRET_KEY=zQzVE6Lx9tpSzv7WuWO60cf6xVTYOqSXNLmNT0D1fH4XVwJrejV1KO5A4w1m3KUZ
+DJANGO_ADMIN_URL=admin/
+
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+CELERY_BROKER_URL=redis://redis:6379/0
+
+
