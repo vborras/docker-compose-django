@@ -43,6 +43,7 @@ RUN chown django /start-celerybeat
 
 COPY . /app
 
+RUN mkdir /app/static
 RUN chown -R django /app
 
 USER django
