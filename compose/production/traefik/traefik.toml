@@ -18,4 +18,4 @@ defaultEntryPoints = ["http"]
     [frontends.django.headers]
       HostsProxyHeaders = ['X-CSRFToken']
     [frontends.django.routes.dr1]
-      rule = "Host:localhost"
+      rule = "Host:curso-docker.dekaside.com"
