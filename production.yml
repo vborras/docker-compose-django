@@ -8,7 +8,7 @@ services:
   django: &django
     build:
       context: .
-      dockerfile: ./compose/django/Dockerfile
+      dockerfile: ./compose/production/django/Dockerfile
     image: compose_example_django
     depends_on:
       - postgres
@@ -32,7 +32,7 @@ services:
   traefik:
     build:
       context: .
-      dockerfile: ./compose/traefik/Dockerfile
+      dockerfile: ./compose/production/traefik/Dockerfile
     image: compose_example_traefik
     depends_on:
       - django
