@@ -2,13 +2,12 @@ version: '3'
 
 volumes:
   postgres_data: {}
-  traefik: {}
 
 services:
   django: &django
     build:
       context: .
-      dockerfile: ./compose/django/Dockerfile
+      dockerfile: ./compose/local/django/Dockerfile
     image: compose_example_django
     depends_on:
       - postgres
@@ -16,6 +15,10 @@ services:
     env_file:
       - ./.envs/.django
       - ./.envs/.postgres
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
     command: /start
     networks:
       - compose_example
@@ -29,21 +32,6 @@ services:
     networks:
       - compose_example
 
-  traefik:
-    build:
-      context: .
-      dockerfile: ./compose/traefik/Dockerfile
-    image: compose_example_traefik
-    depends_on:
-      - django
-    volumes:
-      - traefik:/etc/traefik/acme
-    networks:
-      - compose_example
-    ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
-
   redis:
     image: redis:3.2
     networks:
@@ -53,11 +41,13 @@ services:
     <<: *django
     image: compose_example_celeryworker
     command: /start-celeryworker
+    ports: []
 
   celerybeat:
     <<: *django
     image: compose_example_celerybeat
     command: /start-celerybeat
+    ports: []
 
 networks:
     compose_example:
